@@ -14,7 +14,7 @@ def remove_residue(conjunct: str):
 
 def get_conjuncts():
     coh_pattern: re.Pattern = re.compile(r'SWMR_state_machine T = \(((?:[^\"]|\s)*)\)')
-    with open("CoherenceProperties.thy", 'r') as coh_file:
+    with open("Common/CoherenceProperties.thy", 'r') as coh_file:
         coh_prop: str = coh_file.read()
 
     coh_prop = re.sub(re.escape('C_msg_P_oppo ISD (nextHTDDataPending) (\<lambda> T i. \<not> CSTATE Modified T i) T'), f'C_msg_P_oppo ISD nextHTDDataPending (\<lambda>T i. \<not> CSTATE Modified T i) T', coh_prop)

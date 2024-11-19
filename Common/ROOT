@@ -1,4 +1,4 @@
-session "BaseProof" = HOL +
+session "BaseProof1" = HOL +
   options [document = false]
   theories
     Transposed
