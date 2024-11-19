@@ -29,17 +29,17 @@ def get_conjuncts():
     return conjuncts
 
 def transform_isabelle_file(input_filename: str) -> str:
-    match: Match = re.match(r"(New)(\w+)\.thy", input_filename)
+    match: Match = re.match(r"(Fix)(\w+)\.thy", input_filename)
     if not match:
         raise ValueError("Filename does not match the expected pattern in label40.py.")
    
     prefix1,  name = match.groups()
-    output_filename: str = f"New{name}.thy"
+    output_filename: str = f"Fix{name}.thy"
     
     with open(input_filename, 'r') as file:
         content: str = file.read()
 
-    theory_new_name = f"New{name}"
+    theory_new_name = f"Fix{name}"
     content = re.sub(r'(theory\s+)\w+', r'\1 ' + theory_new_name, content)
 
     facts_pattern: re.Pattern = re.compile(r'have.*(i(\d{1,4})): "(.*?)".*by.*insert.*')
@@ -210,8 +210,8 @@ def transform_isabelle_file(input_filename: str) -> str:
 
 if __name__ == "__main__":
     
-    #files = glob.glob("NewSharedRdOwn.thy")
-    files = (glob.glob("New*.thy")) + (glob.glob("patch*.thy"))#+ ["lemmaHeaders.thy"] # - set(glob.glob("New*Backup.thy")) - set(glob.glob("New*AlmostDone.thy")))
+    #files = glob.glob("FixSharedRdOwn.thy")
+    files = (glob.glob("Fix*.thy")) + (glob.glob("patch*.thy"))#+ ["lemmaHeaders.thy"] # - set(glob.glob("Fix*Backup.thy")) - set(glob.glob("Fix*AlmostDone.thy")))
     for file_path in files:
         print("doing", file_path)
         input_filename: str = file_path #sys.argv[1]
